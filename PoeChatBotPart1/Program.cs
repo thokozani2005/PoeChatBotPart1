@@ -11,7 +11,10 @@ namespace PoeChatBotPart1
         static void Main(string[] args)
         {
             //called my classes in my mainMethod
+            //Voice Chat class
             new Voice() { };
+            //Logo class
+            new Logo_Image() { };
         }
     }
 }
