@@ -17,6 +17,51 @@ namespace PoeChatBotPart1
         public Store_and_Prompt()
         {
 
+            validate.AddBotTypingEffect("Bot: Please Enter your name: ", ConsoleColor.Yellow);
+            //used a do while to reprompt the user for the name if it is empty or has double spaces
+            do
+            {
+
+
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write("User: ");
+                userName = Console.ReadLine();
+            } while (!validate.CheckUserName(userName));
+
+
+
+            //calling my methods
+
+            Store_Bot_Response();
+            Store_words_to_ignore();
+
+
+            validate.AddBotTypingEffect("Bot: Please Enter a Question related to CyberSecurity: ", ConsoleColor.Yellow);
+            //a do while loop to validate the question, whether it is empty or has exit words, or if the user still wants to continue
+            do
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write(userName + ": ");
+                user_Question = Console.ReadLine().ToLower();
+
+                // checking if the question is not or not
+                if (!validate.VerifyUserQuestion(user_Question))
+                {
+
+
+                }
+                else if (Exit_Bot(user_Question))
+                {
+                    // If the user wants to exit, break out of the loop
+                    break;
+                }
+                else
+                {
+                    // If the user enters a valid question, process the response
+                    CheckResponse();
+                }
+
+            } while (true);
         }
 
 
