@@ -15,6 +15,13 @@ namespace PoeChatBotPart1
             new Voice() { };
             //Logo class
             new Logo_Image() { };
+            //called this class that does not have a constructor
+          
+
+
+
+            new Store_and_Prompt() { };
+
         }
     }
 }
