@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 
 namespace PoeChatBotPart1
 {
@@ -9,6 +10,10 @@ namespace PoeChatBotPart1
         private static ArrayList Words_to_ignore = new ArrayList();
         private static string userName = string.Empty;
         private static string user_Question = string.Empty;
+
+        //object calling in the class so that the methods can access the typing effect method
+        Store_ValidationMethods validate = new Store_ValidationMethods();
+
         public Store_and_Prompt()
         {
 
@@ -52,5 +57,88 @@ namespace PoeChatBotPart1
             Words_to_ignore.Add("please");
             Words_to_ignore.Add("define");
         }
+
+
+
+        //creating a boolean method 
+        public bool Exit_Bot(string response)
+        {
+            Boolean verify = false;
+            //declared a arraylist that will store the exit words
+            ArrayList Exitwords = new ArrayList();
+
+
+            Exitwords.Add("goodbye");
+            Exitwords.Add("bye");
+            Exitwords.Add("stop");
+            Exitwords.Add("exit");
+            //used a loop to iterate trhough the arraylist and check for stop words
+            foreach (string exits in Exitwords)
+            {
+                if (response.Contains(exits))
+                {
+                    validate.AddBotTypingEffect("************************************************************************\n", ConsoleColor.DarkYellow);
+                    validate.AddBotTypingEffect("Bot: Goodbye " + userName + " Hope you had a nice experience. \n************************************************************************", ConsoleColor.Green);
+
+                    System.Environment.Exit(0);
+                    verify = true;
+                }
+            }
+            return verify;
+        }
+
+
+        //
+        private void CheckResponse()
+        {
+            // Split the input and filter out stopwords
+            string[] words = user_Question.Split(' ');
+            ArrayList filteredWords = new ArrayList();
+
+            foreach (string word in words)
+            {
+                if (!Words_to_ignore.Contains(word.ToLower()))
+                {
+                    filteredWords.Add(word.ToLower());
+                }
+            }
+
+            bool foundResponse = false;
+            foreach (string response in Bot_Response)
+            {
+                // Split key and response using the colon
+                string[] parts = response.Split(':');
+                //assigning the first part of the split to keyword, this will act as a word that will triger the response
+                string keywords = parts[0];
+                //assigning the second part of the split to keyword, this is where the response will be stored
+                string reply = parts[1];
+
+                foreach (string word in filteredWords)
+                {
+                    if (keywords.Contains(word))
+                    {
+
+                        validate.AddBotTypingEffect("Bot: " + reply, ConsoleColor.DarkGreen);
+
+
+                        validate.AddBotTypingEffect("\nLet me know if you'd like more assistance refining this further!\nOr please enter (stop/bye/exit/goobye) to exit the application", ConsoleColor.DarkYellow);
+                        foundResponse = true;
+                        break; // Stop checking once a match is found
+                    }
+                }
+                if (foundResponse) break;
+            }
+
+            //response if no match is found
+            if (!foundResponse)
+            {
+                validate.TriggerBeep();
+                validate.AddBotTypingEffect("Bot: Please search for something related to cybersecurity, " + userName + ".", ConsoleColor.DarkRed);
+
+
+            }
+        }//
+
+
     }
 }
