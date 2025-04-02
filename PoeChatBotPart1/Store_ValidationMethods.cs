@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace PoeChatBotPart1
@@ -14,10 +15,10 @@ namespace PoeChatBotPart1
         public Boolean CheckUserName(string user_Name)
         {
             //checking if the user's name is empty
-            if (string.IsNullOrEmpty(user_Name))
+            if (string.IsNullOrEmpty(user_Name) )
             {
                 TriggerBeep();
-                AddBotTypingEffect("Bot: Please enter a valid username, username cannot be empty", ConsoleColor.DarkRed);
+                AddBotTypingEffect("Bot: Please enter a valid name, name cannot be empty", ConsoleColor.DarkRed);
 
 
                 return false;
@@ -25,9 +26,16 @@ namespace PoeChatBotPart1
             // Checking if the user's name is double spaces 
             else if (user_Name.Contains("  "))
             {
+                TriggerBeep();
+                AddBotTypingEffect("Bot: Please enter a valid name, name cannot contain double spaces", ConsoleColor.DarkRed);
 
-                AddBotTypingEffect("Bot: Please enter a valid username, username cannot contain double spaces", ConsoleColor.DarkRed);
-
+                return false;
+            }
+            //since a name is a unique identifier i used regex to check if the name, contains numbers or any special characters
+            else if (Regex.IsMatch(user_Name, @"[0-9!@#$%^&*(),.?:{ }|<>]"))
+           {
+                TriggerBeep();
+                AddBotTypingEffect("Bot: Please enter a valid name, name cannot contain numbers or special characters", ConsoleColor.DarkRed);
                 return false;
             }
 
