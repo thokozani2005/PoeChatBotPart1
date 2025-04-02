@@ -8,6 +8,7 @@ namespace PoeChatBotPart1
     {
         public Logo_Image()
         {
+            //set a path for the logo
             string logo_path = AppDomain.CurrentDomain.BaseDirectory;
 
             // Replace "bin\\Debug\\" with an empty string
