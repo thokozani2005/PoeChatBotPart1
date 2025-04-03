@@ -86,6 +86,8 @@ namespace PoeChatBotPart1
             Bot_Response.Add("sql injection:SQL Injection exploits vulnerabilities in databases to manipulate data.");
             Bot_Response.Add("credential stuffing:Hackers use leaked credentials from previous breaches to access accounts.");
             Bot_Response.Add("brute force:Brute force attacks try multiple password combinations until they succeed.");
+            Bot_Response.Add("protect: To protect your laptop from cyberattacks, ensure software is up-to-date, use antivirus tools, avoid suspicious links, secure your Wi-Fi, and back up data regularly.");
+            Bot_Response.Add("protection: Laptop protection involves using strong passwords, enabling disk encryption, avoiding public Wi-Fi, and installing advanced security solutions.");
             Bot_Response.Add("social engineering:Social engineering manipulates people into giving away confidential data.");
 
         }
@@ -101,6 +103,11 @@ namespace PoeChatBotPart1
             Words_to_ignore.Add("is");
             Words_to_ignore.Add("please");
             Words_to_ignore.Add("define");
+            Words_to_ignore.Add("how");
+            Words_to_ignore.Add("why");
+            Words_to_ignore.Add("do");
+            Words_to_ignore.Add("i");
+
         }
 
 
@@ -122,7 +129,7 @@ namespace PoeChatBotPart1
             {
                 if (response.Contains(exits))
                 {
-                    validate.AddBotTypingEffect("************************************************************************\n", ConsoleColor.DarkYellow);
+                    validate.AddBotTypingEffect("************************************************************************\n", ConsoleColor.Green);
                     validate.AddBotTypingEffect("Bot: Goodbye " + userName + " Hope you had a nice experience. \n************************************************************************", ConsoleColor.Green);
 
                     System.Environment.Exit(0);
@@ -137,52 +144,54 @@ namespace PoeChatBotPart1
         private void CheckResponse()
         {
             // Split the input and filter out stopwords
-            string[] words = user_Question.Split(' ');
-            ArrayList filteredWords = new ArrayList();
-
+            string[] words = user_Question.Split(' '); // Splitting user input into individual words
+            ArrayList filteredWords = new ArrayList(); // Create a list to hold filtered words 
+            // Filter the user's words by excluding stopwords
             foreach (string word in words)
             {
-                if (!Words_to_ignore.Contains(word.ToLower()))
+                if (!Words_to_ignore.Contains(word.ToLower())) // Check if the word is not in the stopword list
                 {
-                    filteredWords.Add(word.ToLower());
+                    filteredWords.Add(word.ToLower()); 
                 }
             }
 
-            bool foundResponse = false;
+            bool foundResponse = false; 
+            string concatenatedReply = ""; 
+
+            // Iterate through all predefined responses
             foreach (string response in Bot_Response)
             {
-                // Split key and response using the colon
+                // Split the response into keywords and actual reply
                 string[] parts = response.Split(':');
-                //assigning the first part of the split to keyword, this will act as a word that will triger the response
-                string keywords = parts[0];
-                //assigning the second part of the split to keyword, this is where the response will be stored
-                string reply = parts[1];
+                string keywords = parts[0];  // First part contains keywords that trigger the response
+                string reply = parts[1];     // Second part contains the chatbot's response text
 
+                
                 foreach (string word in filteredWords)
                 {
-                    if (keywords.Contains(word))
+                    ///conditional statement to check if the response is found
+                    if (keywords.Contains(word)) 
                     {
-
-                        validate.AddBotTypingEffect("Bot: " + reply, ConsoleColor.DarkGreen);
-
-
-                        validate.AddBotTypingEffect("\nLet me know if you'd like more assistance refining this further!\nOr please enter (stop/bye/exit/goobye) to exit the application", ConsoleColor.DarkYellow);
-                        foundResponse = true;
-                        break; // Stop checking once a match is found
+                        concatenatedReply += "Bot: " + reply + "\n"; //concatenating the responses
+                        foundResponse = true; 
+                        break; 
                     }
                 }
-                if (foundResponse) break;
             }
 
-            //response if no match is found
-            if (!foundResponse)
+            // Displaying the  concatenated response if matches were found
+            if (foundResponse && !string.IsNullOrEmpty(concatenatedReply))
             {
-                validate.TriggerBeep();
-                validate.AddBotTypingEffect("Bot: Please search for something related to cybersecurity, " + userName + ".", ConsoleColor.DarkRed);
-
-
+                validate.AddBotTypingEffect(concatenatedReply, ConsoleColor.DarkGreen); 
+                validate.AddBotTypingEffect("\nLet me know if you'd like more assistance refining this further!\nOr please enter (stop/bye/exit/goodbye) to exit the application", ConsoleColor.DarkYellow); // Add extra instructions for the user
             }
-        }//
+            else
+            {
+                // Response if no match is found, it will start by playing the beep method first then display the validation message
+                validate.TriggerBeep(); 
+                validate.AddBotTypingEffect("Bot: Please search for something related to cybersecurity, " + userName + ".", ConsoleColor.DarkRed); // Notify the user when no match is found
+            }
+        }
 
 
     }
