@@ -182,7 +182,7 @@ namespace PoeChatBotPart1
             // Displaying the  concatenated response if matches were found
             if (foundResponse && !string.IsNullOrEmpty(concatenatedReply))
             {
-                validate.AddBotTypingEffect(concatenatedReply, ConsoleColor.DarkGreen); 
+                validate.AddBotTypingEffect(concatenatedReply.TrimEnd(), ConsoleColor.DarkGreen); 
                 validate.AddBotTypingEffect("\nLet me know if you'd like more assistance refining this further!\nOr please enter (stop/bye/exit/goodbye) to exit the application", ConsoleColor.DarkYellow); // Add extra instructions for the user
             }
             else
