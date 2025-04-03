@@ -23,7 +23,23 @@ Added method that validate user input, it chesks if the user enters the required
 Used Color, to ouptup messages int various  colors to visually distinguish bot responses and enhance readability.
 
 
-
-
 Conclusion
 The Main Program brings together the various modules of the Cyber Security Awareness Bot to deliver a cohesive and engaging user experience. By combining multimedia features with interactive chatbot functionalities, it ensures that users not only learn about cybersecurity but also enjoy a dynamic and user-friendly environment.
+
+
+
+Pictures
+First picture is user friendly it display the ascii with colors and the welcoming messages are also there
+
+![image](https://github.com/user-attachments/assets/9f18ad66-320b-4cc4-9b02-7d3ce14ba7bc)
+
+
+
+
+Second picture is for input validation, it Bot checks if the user input is valid, meaning it checks for numbers name should not consist of numbers since it is a unique identifier, it also checks if  the name is empty
+
+![image](https://github.com/user-attachments/assets/244e03a8-d4e2-4c40-b968-1c2a813455f5)
+
+Third picture is laso for input validation but know the user question, it checks if the question is empty, if the question hqas double spaces and if the question is related to syber security
+
+![image](https://github.com/user-attachments/assets/3a4a0a0a-57d9-425e-a15a-167596eedbb9)
