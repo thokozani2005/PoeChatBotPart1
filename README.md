@@ -21,6 +21,7 @@ To make the Bot more user friendly
 -Added the typing effect method in the validate class, passed the frequency Nand duration as parameters
 Added method that validate user input, it chesks if the user enters the required input, then i also crated a method that beeps if the uswr input doesnt not meet the requirements.
 Used Color, to ouptup messages int various  colors to visually distinguish bot responses and enhance readability.
+Also added the concatenate feature meaning it adss the responses for example the user if the user enters please tell me about password and phishing it displays the two responses.
 
 
 Conclusion
@@ -43,3 +44,7 @@ Second picture is for input validation, it Bot checks if the user input is valid
 Third picture is laso for input validation but know the user question, it checks if the question is empty, if the question hqas double spaces and if the question is related to syber security
 
 ![image](https://github.com/user-attachments/assets/3a4a0a0a-57d9-425e-a15a-167596eedbb9)
+
+Fourth picture shows how the bot functions when the user inpyuts the correct details
+![image](https://github.com/user-attachments/assets/886aa534-beba-4a22-a747-cce7c7cb9a85)
+
