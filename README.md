@@ -51,7 +51,7 @@ Third picture is also for input validation but know the user question, it checks
 
 ![image](https://github.com/user-attachments/assets/3a4a0a0a-57d9-425e-a15a-167596eedbb9)
 
-Fourth picture shows how the bot functions when the user inpyuts the correct details
+Fourth picture shows how the bot functions when the user inputs the correct details
 ![image](https://github.com/user-attachments/assets/886aa534-beba-4a22-a747-cce7c7cb9a85)
 Fifth picture shows how the bot stores meaning it identifies the user's name
 ![poe-first](https://github.com/user-attachments/assets/17b2da7a-c56b-4df3-91b8-d0ce127b8397)
