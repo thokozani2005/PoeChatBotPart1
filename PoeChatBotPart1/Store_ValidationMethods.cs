@@ -89,8 +89,7 @@ namespace PoeChatBotPart1
             {
                 // This will play a beep with the specified frequency and duration
                 Console.Beep(frequency, duration);
-                //Console.ForegroundColor = ConsoleColor.Yellow;
-                //Console.WriteLine("Beep sound triggered!");
+                
             }
             catch (Exception ex)
             {

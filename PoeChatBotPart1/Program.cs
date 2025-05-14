@@ -15,8 +15,6 @@ namespace PoeChatBotPart1
             new Voice() { };
             //Logo class
             new Logo_Image() { };
-            
-
             //called this class that does not have a constructor
             Store_ValidationMethods validate = new Store_ValidationMethods();
 
@@ -30,6 +28,8 @@ namespace PoeChatBotPart1
 
             // called the store and promt classs
             new Store_and_Prompt() { };
+            new Random_Response() { };
+            new memory_Recall() { };
 
         }
     }

@@ -45,8 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logo_Image.cs" />
+    <Compile Include="memory_Recall.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Random_Response.cs" />
     <Compile Include="Store_and_Prompt.cs" />
     <Compile Include="Store_ValidationMethods.cs" />
     <Compile Include="Voice.cs" />
